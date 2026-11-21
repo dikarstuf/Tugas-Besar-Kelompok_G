@@ -1,94 +1,100 @@
-#ifndef KRS_H_INCLUDED
-#define KRS_H_INCLUDED
-#include "matakuliah.h"
+#ifndef KEANGGOTAAN_H_INCLUDED
+#define KEANGGOTAAN_H_INCLUDED
+#include "komunitas.h"
 #include <string>
 #include <iostream>
 
 using namespace std;
 
-struct ------------
+// RELASI : Keanggotaan (tanggal bergabung, jabatan, status anggota)
+struct Keanggotaan
 {
-    ------------
+    string tanggalBergabung;
+    string jabatan;
+    string statusAnggota;
 };
 
-typedef ------------ ------------;         // variabel alias untuk infor
-typedef  struct ------------ *------------;   // variabel alias untuk pointer
+typedef Keanggotaan infotypeKA;         // variabel alias untuk infor
+typedef  struct elmKeanggotaan *addressKA;   // variabel alias untuk pointer
 
 // kerangka dari elemen list
-struct ------------
+struct elmKeanggotaan
 {
-    ------------
+    infotypeKA info;
+    addressKA next;
+    addressKom pKomunitas;
 };
 
 // kerangka dari list
-struct ListKRS
+struct ListKeanggotaan
 {
-    ------------
+    addressKA first;
 };
 
 // pengecekan apakah list kosong
-------------;
+bool isEmpty(const ListKeanggotaan &LK);
 /* I.S. list LK terdefinisi
    F.S. true jika list kosong dan false jika tidak kosong */
 
 // pembuatan list kosong
-------------;
+void CreateList(ListKeanggotaan &LK);
 /* I.S. ~
    F.S. terbentuk list kosong */
 
 // manajemen memori
-------------;
-/* I.S. info KRS x dan alamat mata kuliah terdefinisi
-   F.S. mengembalikan alamat elemen KRS berisi x, next NULL, dan menunjuk pMatakuliah */
+addressKA createElemen(infotypeKA x, addressKom pKom);
+/* I.S. info keanggotaan x dan alamat komunitas terdefinisi
+   F.S. mengembalikan alamat elemen keanggotaan berisi x, next NULL, dan menunjuk pKomunitas */
 
-------------;
+void dealokasi(addressKA &P);
 /* I.S. pointer P terdefinisi
-   F.S. elemen KRS di-dealokasi; elemen mata kuliah yang ditunjuk tidak ikut dihapus */
+   F.S. elemen keanggotaan di-dealokasi; elemen komunitas yang ditunjuk tidak ikut dihapus */
 
 // pencarian sebuah elemen list
-------------;
-/* I.S. list LK milik mahasiswa dan ID KRS terdefinisi
-   F.S. mengembalikan alamat elemen KRS yang cocok atau NULL jika tidak ditemukan
+addressKA findElm(const ListKeanggotaan &LK, const string &kodeKomunitas);
+/* I.S. list LK milik mahasiswa dan kode komunitas terdefinisi
+   F.S. mengembalikan alamat elemen keanggotaan yang menunjuk komunitas tersebut
+        atau NULL jika tidak ditemukan
 */
 
 // penambahan elemen *
-------------;
+void insertFirst(ListKeanggotaan &LK, addressKA P);
 /* I.S. terdefinisi list LK yang mungkin kosong dan elemen list P
    F.S. menempatkan elemen beralamat P pada awal list */
 
-------------;
+void insertAfter(ListKeanggotaan &LK, addressKA Prec, addressKA P);
 /* I.S. terdefinisi list LK yang mungkin kosong, elemen list P dan elemn list prec
    F.S. menempatkan elemen beralamat P sesudah elemen beralamat Prec */
 
-------------;
+void insertLast(ListKeanggotaan &LK, addressKA P);
 /* I.S. terdefinisi list LK yang mungkin kosong dan elemen list P
    F.S. menempatkan elemen beralamat P pada akhir list */
 
 // penghapusan sebuah elemen
-------------;
+void deleteFirst(ListKeanggotaan &LK, addressKA &P);
 /* I.S. terdefinisi list LK yang mungkin kosong dan elemen list P
    F.S. P adalah alamat dari alamat elemen pertama list
         yang akan dihapus dan elemen list selanjutnya akan menjadi
         elemenlist pertama atau tidak ada elemen list pertama*/
 
-------------;
+void deleteLast(ListKeanggotaan &LK, addressKA &P);
 /* I.S. terdefinisi list LK yang mungkin kosong dan elemen list P
    F.S. P adalah alamat dari alamat elemen terakhir list
         yang akan dihapus dan elemen list sebelumnya akan menjadi
         elemenlist terakhir atau tidak ada elemen list terakhir */
 
-------------;
+void deleteAfter(ListKeanggotaan &LK, addressKA Prec, addressKA &P);
 /* I.S. terdefinisi list LK yang mungkin kosong, elemen list P dan elemn list prec
    F.S. P adalah alamat dari alamat elemen list setelah prec
         yang akan dihapus dan elemen list setelah p akan terhubung
         langsung dengan prec atau tidak ada elemen list setelahnya */
 
-------------;
+void printInfo(const ListKeanggotaan &LK);
 /* I.S. terdefinisi list LK yang mungkin kosong
    F.S. jika list tidak kosong menampilkan semua info yang ada pada list */
 
-------------;
+infotypeKA inputKeanggotaan();
 /* I.S. ~
-        F.S. meminta data KRS dari user */
+   F.S. meminta data keanggotaan dari user */
 
-#endif // KRS_H_INCLUDED
+#endif // KEANGGOTAAN_H_INCLUDED

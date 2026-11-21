@@ -1,117 +1,114 @@
-#ifndef NILAIBST_H_INCLUDED
-#define NILAIBST_H_INCLUDED
+#ifndef AKTIVITASBST_H_INCLUDED
+#define AKTIVITASBST_H_INCLUDED
 #include <string>
 #include <iostream>
 
 using namespace std;
 
-struct NilaiAkademik
+// BST : Aktivitas mahasiswa (id aktivitas, NIM, kode komunitas, nama kegiatan, poin keaktifan)
+// key BST : idAktivitas
+struct Aktivitas
 {
-    ------------
+    int idAktivitas;
+    string nim;
+    string kodeKomunitas;
+    string namaKegiatan;
+    int poinKeaktifan;
 };
 
-typedef ------------ ------------; // variabel alias untuk infor
-typedef  struct ------------ *------------;   // variabel alias untuk pointer
+typedef Aktivitas infotypeA;         // variabel alias untuk infor
+typedef  struct nodeAktivitas *addressA;   // variabel alias untuk pointer
 
 // kerangka dari elemen node
-struct nodeNilai
+struct nodeAktivitas
 {
-    ------------
+    infotypeA info;
+    addressA left;
+    addressA right;
 };
 
 // kerangka dari BST
 struct BST
 {
-    ------------
+    addressA root;
 };
 
-------------;
-/* I.S. grade terdefinisi
-   F.S. mengembalikan urutan grade T < E < D < C < BC < B < AB < A,
-        atau -1 jika grade tidak dikenal */
-
-------------;
-/* I.S. record left dan right terdefinisi dengan grade yang dikenal
-   F.S. true jika record left berada sebelum record right sesuai urutan BST */
-
-------------;
-/* I.S. komponen tugas, kuis, UTS, dan UAS terdefinisi
-   F.S. nilai akhir dibulatkan dari 15% tugas + 15% kuis + 35% UTS + 35% UAS;
-        grade T digunakan jika hasil berbobot di luar 0 sampai 100 */
-
 // pengecekan apakah BST kosong
-------------;
+bool isEmpty(const BST &T);
 /* I.S. BST T terdefinisi
    F.S. true jika BST kosong dan false jika tidak kosong */
 
 // pembuatan BST kosong
-------------;
+void CreateBST(BST &T);
 /* I.S. ~
    F.S. terbentuk BST kosong */
 
 // manajemen memori
-------------;
-/* I.S. info x terdefinisi
+addressA createElemen(infotypeA x);
+/* I.S. info aktivitas x terdefinisi
    F.S. mengembalikan alamat node berisi x dengan anak kiri dan kanan NULL */
 
-------------;
+void dealokasi(addressA &P);
 /* I.S. pointer P terdefinisi
    F.S. memori yang digunakan P dikembalikan ke sistem */
 
 // pencarian sebuah elemen node
-------------;
-/* I.S. BST T dan identitas mahasiswa, mata kuliah, serta periode terdefinisi
-   F.S. mengembalikan alamat node yang cocok atau NULL jika tidak ditemukan
-*/
+addressA findNode(const BST &T, int idAktivitas);
+/* I.S. BST T dan id aktivitas terdefinisi
+   F.S. mengembalikan alamat node yang cocok atau NULL jika tidak ditemukan */
 
-// penambahan elemen *
-------------;
+// penambahan elemen
+void insertNode(BST &T, addressA P);
 /* I.S. terdefinisi BST T yang mungkin kosong dan elemen node P
-   F.S. menempatkan elemen beralamat P menurut T < E < D < C < BC < B < AB < A,
-        lalu NIM, kode MK, semester, dan tahun akademik sebagai tie-breaker */
+   F.S. menempatkan elemen beralamat P berdasarkan key idAktivitas
+        (id lebih kecil ke kiri, id lebih besar ke kanan);
+        node tidak ditambahkan jika id sudah ada */
 
 // penghapusan node yang sudah diketahui alamatnya
-------------;
+void deleteNode(BST &T, addressA P);
 /* I.S. terdefinisi BST T yang mungkin kosong dan elemen node P
-   F.S. P adalah alamat dari alamat elemen yang akan dihapus.
+   F.S. P adalah alamat dari elemen yang akan dihapus.
         elemen lain menggantikan posisi elemen P yang dihapus
-        sesuai aturan BST*/
+        sesuai aturan BST */
 
-------------;
-/* I.S. terdefinisi BST T dan identitas record nilai
-   F.S. record yang cocok dihapus jika ditemukan */
+void deleteAktivitas(BST &T, int idAktivitas);
+/* I.S. terdefinisi BST T dan id aktivitas
+   F.S. node dengan id yang cocok dihapus jika ditemukan */
 
-------------;
+void printInOrder(const BST &T);
 /* I.S. terdefinisi BST T
-   F.S. seluruh record ditampilkan dengan traversal in-order */
+   F.S. seluruh aktivitas ditampilkan dengan traversal in-order */
 
-------------;
+void printPreOrder(const BST &T);
 /* I.S. terdefinisi BST T
-   F.S. seluruh record ditampilkan dengan traversal pre-order */
+   F.S. seluruh aktivitas ditampilkan dengan traversal pre-order */
 
-------------;
+void printPostOrder(const BST &T);
 /* I.S. terdefinisi BST T
-   F.S. seluruh record ditampilkan dengan traversal post-order */
+   F.S. seluruh aktivitas ditampilkan dengan traversal post-order */
 
-------------;
+addressA findMin(const BST &T);
 /* I.S. terdefinisi BST T
-   F.S. mengembalikan node dengan grade minimum atau NULL jika BST kosong */
+   F.S. mengembalikan node dengan id aktivitas minimum atau NULL jika BST kosong */
 
-------------;
+addressA findMax(const BST &T);
 /* I.S. terdefinisi BST T
-   F.S. mengembalikan node dengan grade maksimum atau NULL jika BST kosong */
+   F.S. mengembalikan node dengan id aktivitas maksimum atau NULL jika BST kosong */
 
-------------;
+int tinggiBST(const BST &T);
 /* I.S. terdefinisi BST T
    F.S. mengembalikan tinggi BST; tinggi pohon kosong adalah 0 */
 
-------------;
+int jumlahNode(const BST &T);
 /* I.S. terdefinisi BST T
    F.S. mengembalikan jumlah node dalam BST */
 
-------------;
+int totalPoin(const BST &T, const string &nim);
+/* I.S. terdefinisi BST T dan NIM
+   F.S. mengembalikan jumlah poin keaktifan seluruh aktivitas milik NIM tersebut */
+
+infotypeA inputAktivitas();
 /* I.S. ~
-   F.S. meminta data nilai akademik dari user */
+   F.S. meminta data aktivitas dari user */
 
-
-#endif // NILAIBST_H_INCLUDED
+#endif // AKTIVITASBST_H_INCLUDED

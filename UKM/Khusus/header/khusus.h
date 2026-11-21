@@ -1,29 +1,31 @@
 #ifndef KHUSUS_H_INCLUDED
 #define KHUSUS_H_INCLUDED
-#include "../../MLL-01/header/krs.h"
+#include "../../MLL-01/header/keanggotaan.h"
 #include "../../MLL-01/header/mahasiswa.h"
-#include "../../BST/header/nilaiBST.h"
+#include "../../MLL-01/header/komunitas.h"
+#include "../../BST/header/aktivitasBST.h"
 
-void khusus1(ListMahasiswa &LM, ListMatakuliah &LMK, BST &T);
+void khusus1(ListMahasiswa &LM, ListKomunitas &LKom, BST &T);
 /* I.S. -
-   F.S. Melakukan pengisian nilai mahasiswa dengan memilih mahasiswa dan mata kuliah tersedia.
+   F.S. Melakukan pencatatan aktivitas mahasiswa dengan memilih mahasiswa dan komunitas
+        yang diikuti (mahasiswa harus tergabung dalam komunitas tersebut).
 */
 
-void khusus2(ListMahasiswa &LM, ListMatakuliah &LMK, BST &T);
+void khusus2(ListMahasiswa &LM, ListKomunitas &LKom, BST &T);
 /* I.S. -
-   F.S. Menyimpan nilai mahasiswake BST berdasarkan nomor resi (unik dan acak).
+   F.S. Menyimpan aktivitas mahasiswa ke BST berdasarkan id aktivitas (unik dan acak).
 */
 
-void khusus3(ListMahasiswa &LM, ListMatakuliah &LMK, BST &T);
+void khusus3(ListMahasiswa &LM, ListKomunitas &LKom, BST &T);
 /* I.S. -
-   F.S. Menampilkan Kartu Hasil Studi (KHS) mahasiswa berdasarkan semester tertentu dengan menampilkan
-        daftar mata kuliah beserta nilai yang diperoleh
+   F.S. Menampilkan daftar komunitas yang diikuti mahasiswa beserta seluruh aktivitas
+        dan poin keaktifan yang diperoleh pada tiap komunitas.
 */
 
-void khusus4(ListMahasiswa &LM, ListMatakuliah &LMK, BST &T);
+void khusus4(ListMahasiswa &LM, ListKomunitas &LKom, BST &T);
 /* I.S. -
-   F.S. Menghitung Indeks Prestasi Semester (IPS) mahasiswa berdasarkan nilai mata kuliah dan jumlah SKS yang
-        diambil pada semester tersebut
+   F.S. Menghitung total poin keaktifan mahasiswa berdasarkan seluruh aktivitas
+        yang tercatat pada BST.
 */
 
 #endif // KHUSUS_H_INCLUDED

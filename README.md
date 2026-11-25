@@ -1,2 +1,2 @@
 # Tugas-Besar-Kelompok_G
-Aplikasi pengelolaan komunitas kampus (ukm.telu) mencatat mahasiswa dan komunitas yang diikuti. Seorang mahasiswa dapat bergabung dengan beberapa komunitas dan setiap komunitas dapat memiliki banyak anggota. Setiap anggota dapat mengikuti berbagai kegiatan komunitas dan memperoleh poin keaktifan. 
+Aplikasi pre-order makanan mencatat penjual makanan (Pofood.com) yang menawarkan berbagai menu. Satu penjual dapat menawarkan banyak menu dan satu menu dapat ditawarkan oleh beberapa penjual dengan harga yang berbeda. Pelanggan dapat melakukan pemesanan dari berbagai penjual. Data penawaran menu dikelola melalui Multi Linked List, sedangkan transaksi pre-order dicatat dalam Binary Search Tree.

@@ -1,4 +1,3 @@
-#include "../../header/matakuliah.h"
 #include "../header/penawaran.h"
 
 bool isEmpty(const ListPenawaran &LP)

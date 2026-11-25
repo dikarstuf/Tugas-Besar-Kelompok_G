@@ -5,7 +5,7 @@
 
 using namespace std;
 
-// CHILD : Komunitas (kode komunitas, nama, kategori)
+// CHILD : Komunitas (kode komunitas, nama, kategori) -> SINGLE LINKED LIST
 struct Komunitas
 {
     string kode;
@@ -13,8 +13,8 @@ struct Komunitas
     string kategori;
 };
 
-typedef Komunitas infotypeKom;         // variabel alias untuk infor
-typedef  struct elmKomunitas *addressKom;   // variabel alias untuk pointer
+typedef Komunitas infotypeKom;              // variabel alias untuk info
+typedef struct elmKomunitas *addressKom;    // variabel alias untuk pointer
 
 // kerangka dari elemen list
 struct elmKomunitas
@@ -51,16 +51,15 @@ void dealokasi(addressKom &P);
 // pencarian sebuah elemen list
 addressKom findElm(const ListKomunitas &LKom, const string &kodeKomunitas);
 /* I.S. list LKom dan kode komunitas terdefinisi
-   F.S. mengembalikan alamat elemen komunitas yang cocok atau NULL jika tidak ditemukan
-*/
+   F.S. mengembalikan alamat elemen komunitas yang cocok atau NULL jika tidak ditemukan */
 
-// penambahan elemen *
+// penambahan elemen
 void insertFirst(ListKomunitas &LKom, addressKom P);
 /* I.S. terdefinisi list LKom yang mungkin kosong dan elemen list P
    F.S. menempatkan elemen beralamat P pada awal list */
 
 void insertAfter(ListKomunitas &LKom, addressKom Prec, addressKom P);
-/* I.S. terdefinisi list LKom yang mungkin kosong, elemen list P dan elemn list prec
+/* I.S. terdefinisi list LKom yang mungkin kosong, elemen list P dan elemen list Prec
    F.S. menempatkan elemen beralamat P sesudah elemen beralamat Prec */
 
 void insertLast(ListKomunitas &LKom, addressKom P);
@@ -69,22 +68,19 @@ void insertLast(ListKomunitas &LKom, addressKom P);
 
 // penghapusan sebuah elemen
 void deleteFirst(ListKomunitas &LKom, addressKom &P);
-/* I.S. terdefinisi list LKom yang mungkin kosong dan elemen list P
-   F.S. P adalah alamat dari alamat elemen pertama list
-        yang akan dihapus dan elemen list selanjutnya akan menjadi
-        elemenlist pertama atau tidak ada elemen list pertama*/
+/* I.S. terdefinisi list LKom yang mungkin kosong
+   F.S. P adalah alamat elemen pertama list yang dilepas;
+        elemen selanjutnya menjadi elemen pertama atau list menjadi kosong */
 
 void deleteLast(ListKomunitas &LKom, addressKom &P);
-/* I.S. terdefinisi list LKom yang mungkin kosong dan elemen list P
-   F.S. P adalah alamat dari alamat elemen terakhir list
-        yang akan dihapus dan elemen list sebelumnya akan menjadi
-        elemenlist terakhir atau tidak ada elemen list terakhir */
+/* I.S. terdefinisi list LKom yang mungkin kosong
+   F.S. P adalah alamat elemen terakhir list yang dilepas;
+        elemen sebelumnya menjadi elemen terakhir atau list menjadi kosong */
 
 void deleteAfter(ListKomunitas &LKom, addressKom Prec, addressKom &P);
-/* I.S. terdefinisi list LKom yang mungkin kosong, elemen list P dan elemn list prec
-   F.S. P adalah alamat dari alamat elemen list setelah prec
-        yang akan dihapus dan elemen list setelah p akan terhubung
-        langsung dengan prec atau tidak ada elemen list setelahnya */
+/* I.S. terdefinisi list LKom yang mungkin kosong dan elemen list Prec
+   F.S. P adalah alamat elemen setelah Prec yang dilepas;
+        elemen setelah P terhubung langsung dengan Prec */
 
 void printInfo(const ListKomunitas &LKom);
 /* I.S. terdefinisi list LKom yang mungkin kosong

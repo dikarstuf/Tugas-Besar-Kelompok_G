@@ -6,7 +6,7 @@
 
 using namespace std;
 
-// PARENT : Mahasiswa (NIM, nama, prodi, angkatan)
+// PARENT : Mahasiswa (NIM, nama, prodi, angkatan) -> SINGLE LINKED LIST
 struct Mahasiswa
 {
     string nim;
@@ -15,23 +15,21 @@ struct Mahasiswa
     int angkatan;
 };
 
-typedef Mahasiswa infotypeM;         // variabel alias untuk infor
-typedef  struct elmMahasiswa *addressM;   // variabel alias untuk pointer
+typedef Mahasiswa infotypeM;                // variabel alias untuk info
+typedef struct elmMahasiswa *addressM;      // variabel alias untuk pointer
 
 // kerangka dari elemen list
 struct elmMahasiswa
 {
     infotypeM info;
-    ListKeanggotaan LK;
+    ListKeanggotaan LK;         // list relasi (DLL) milik mahasiswa ini
     addressM next;
-    addressM prev;
 };
 
 // kerangka dari list
 struct ListMahasiswa
 {
     addressM first;
-    addressM last;
 };
 
 // pengecekan apakah list kosong
@@ -46,7 +44,7 @@ void CreateList(ListMahasiswa &LM);
 // manajemen memori
 addressM createElemen(infotypeM x);
 /* I.S. info mahasiswa x terdefinisi
-   F.S. mengembalikan alamat elemen berisi x dengan prev/next NULL
+   F.S. mengembalikan alamat elemen berisi x dengan next NULL
         dan daftar keanggotaan dalam keadaan kosong */
 
 void dealokasi(addressM &P);
@@ -57,16 +55,15 @@ void dealokasi(addressM &P);
 // pencarian sebuah elemen list
 addressM findElm(const ListMahasiswa &LM, const string &nim);
 /* I.S. list LM dan NIM terdefinisi
-   F.S. mengembalikan alamat elemen mahasiswa yang cocok atau NULL jika tidak ditemukan
-*/
+   F.S. mengembalikan alamat elemen mahasiswa yang cocok atau NULL jika tidak ditemukan */
 
-// penambahan elemen *
+// penambahan elemen
 void insertFirst(ListMahasiswa &LM, addressM P);
 /* I.S. terdefinisi list LM yang mungkin kosong dan elemen list P
    F.S. menempatkan elemen beralamat P pada awal list */
 
 void insertAfter(ListMahasiswa &LM, addressM Prec, addressM P);
-/* I.S. terdefinisi list LM yang mungkin kosong, elemen list P dan elemn list prec
+/* I.S. terdefinisi list LM yang mungkin kosong, elemen list P dan elemen list Prec
    F.S. menempatkan elemen beralamat P sesudah elemen beralamat Prec */
 
 void insertLast(ListMahasiswa &LM, addressM P);
@@ -75,22 +72,19 @@ void insertLast(ListMahasiswa &LM, addressM P);
 
 // penghapusan sebuah elemen
 void deleteFirst(ListMahasiswa &LM, addressM &P);
-/* I.S. terdefinisi list LM yang mungkin kosong dan elemen list P
-   F.S. P adalah alamat dari alamat elemen pertama list
-        yang akan dihapus dan elemen list selanjutnya akan menjadi
-        elemenlist pertama atau tidak ada elemen list pertama*/
+/* I.S. terdefinisi list LM yang mungkin kosong
+   F.S. P adalah alamat elemen pertama list yang dilepas;
+        elemen selanjutnya menjadi elemen pertama atau list menjadi kosong */
 
 void deleteLast(ListMahasiswa &LM, addressM &P);
-/* I.S. terdefinisi list LM yang mungkin kosong dan elemen list P
-   F.S. P adalah alamat dari alamat elemen terakhir list
-        yang akan dihapus dan elemen list sebelumnya akan menjadi
-        elemenlist terakhir atau tidak ada elemen list terakhir */
+/* I.S. terdefinisi list LM yang mungkin kosong
+   F.S. P adalah alamat elemen terakhir list yang dilepas;
+        elemen sebelumnya menjadi elemen terakhir atau list menjadi kosong */
 
 void deleteAfter(ListMahasiswa &LM, addressM Prec, addressM &P);
-/* I.S. terdefinisi list LM yang mungkin kosong, elemen list P dan elemn list prec
-   F.S. P adalah alamat dari alamat elemen list setelah prec
-        yang akan dihapus dan elemen list setelah p akan terhubung
-        langsung dengan prec atau tidak ada elemen list setelahnya */
+/* I.S. terdefinisi list LM yang mungkin kosong dan elemen list Prec
+   F.S. P adalah alamat elemen setelah Prec yang dilepas;
+        elemen setelah P terhubung langsung dengan Prec */
 
 void printInfo(const ListMahasiswa &LM);
 /* I.S. terdefinisi list LM yang mungkin kosong
